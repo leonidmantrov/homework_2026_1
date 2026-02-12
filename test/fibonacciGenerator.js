@@ -36,4 +36,26 @@ QUnit.module("Тестируем функцию fibonacciGenerator", function() 
 
         assert.deepEqual([...fibGen], [0, 1, 1, 2, 3, 5, 8, 13, 21, 34], "fibonacciGenerator(10). Должны быть сгенерированы первые 10 чисел Фибоначчи. Результат = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]");
     });
+
+    QUnit.test("Пустая строка считается некорректным аргументом", function(assert) {
+        const fibGen = fibonacciGenerator("");
+        
+        assert.deepEqual([...fibGen], [], "fibonacciGenerator(''). Пустая строка - это не целое число, значит вернется пустой массив. Результат = []");
+    });
+
+    QUnit.test("Работает со строкой-не числом", function(assert) {
+        const fibGen = fibonacciGenerator("abc");
+        
+        assert.deepEqual([...fibGen], [], "fibonacciGenerator('abc'). Строка 'abc' - это не целое число, значит вернется пустой массив. Результат = []");
+    });
+
+    QUnit.test("Пустой объект", function(assert) {
+        const fibGen = fibonacciGenerator({});
+        assert.deepEqual([...fibGen], [], "fibonacciGenerator({}). Объект - это не целое число, значит вернется пустой массив. Результат = []");
+    });
+
+    QUnit.test("Объект с числом", function(assert) {
+        const fibGen = fibonacciGenerator({ value: 5 });
+        assert.deepEqual([...fibGen], [], "fibonacciGenerator({ value: 5 }). Объект - это не целое число, значит вернется пустой массив. Результат = []");
+    });
 });

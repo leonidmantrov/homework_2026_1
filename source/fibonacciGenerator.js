@@ -1,16 +1,18 @@
+'use strict';
+
 /**
  * Генерирует первые n чисел последовательности Фибоначчи
  * @param {number} n - количество чисел (целое, неотрицательное)
- * @returns {Generator<number>} - генератор чисел Фибоначчи
  * 
  * @example
  * const gen = fibonacciGenerator(5);
  * console.log([...gen]); // [0, 1, 1, 2, 3]
+ * 
+ * @returns {Generator<number>} - генератор чисел Фибоначчи
  */
-
 const fibonacciGenerator = function* (n) {
     // Если n <= 0 - ничего не генерируем
-    if (n <= 0) return;
+    if (!Number.isInteger(n) || n <= 0) return;
 
     // Первые два числа Фибоначчи
     let [a, b] = [0, 1];
